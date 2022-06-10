@@ -1,17 +1,15 @@
-const express = require('express')
-const app = express()
-const bodyParser = require('body-parser')
-var rotas = require('./rotas');
-const sequelize = require('./connection');
+const express = require("express");
+const app = express();
 
-sequelize.authenticate().then(()=>{console.log("Conectado com sucesso")}).catch((erro)=>{console.log(erro)})
+const router = require("./routes")
 
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 
-app.use('/', rotas);
+app.use('/', router)
 
 app.listen(3000, () => {
-    console.log('API Rodando!')
-})
+    console.log("Servidor rodando!");
+});
+
