@@ -8,6 +8,11 @@ exports.findAll = async (req, res) => {
 exports.findOne = async (req, res) => {
     const id = req.params.id;
     const game = await Game.findByPk(id);
+    if (game) {
+        return res.json(game);
+    } else {
+        return res.status(404).json({ message: "Game not found" });
+    }
     return res.json(game);
 }
 
