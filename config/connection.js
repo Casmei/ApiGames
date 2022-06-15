@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize');
 const Game = require('../models/Game')
 
 
-const connection = new Sequelize("mariadb://root:root@localhost:3306/games");
+const connection = new Sequelize(process.env.DB_URL);
 connection.define("Games", Game);
 connection
     .authenticate()
